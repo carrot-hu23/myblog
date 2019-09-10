@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="editor/css/editormd.css" />
+    <link rel="stylesheet" href="editor/css/editormd.preview.css">
+    <script src="editor/lib/marked.min.js"></script>
+    <script src="editor/lib/prettify.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="editor/js/editormd.min.js"></script>
+    <style>
+        .css-at5h1k-sm-Btn {
+            display: inline-flex;
+            vertical-align: middle;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            line-height: 20px;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            box-shadow: rgba(38, 50, 56, 0.2) 0px 0px 0px 1px inset;
+            height: 32px;
+            font-size: 13px;
+            border-radius: 3px;
+            transition: all 0.18s ease-in-out;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            background: rgb(69, 90, 100);
+            padding: 0px 9px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/markdown" METHOD="post">
+        <div style="width: 80%;height: 100px">
+            <div style="float: right;">
+                <button type="primary" class="css-at5h1k-sm-Btn e5i1odf0">
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" class="css-1lc17o4-icon">
+                        <path fill-rule="evenodd" d="M1.639 6.857l20.943-3.969-10.279 19.214-5.05-7.26L12.51 9.94l-6.406 3.264-4.466-6.347zm3.495 1.504l1.726 2.435L18.92 5.453l-9.146 9.503 2.313 3.348 6.833-12.851L5.134 8.361z">
+
+                        </path>
+                    </svg>
+                    <span class="css-1km43m6-BtnContent e5i1odf1">发布文章</span>
+                </button>
+            </div>
+        </div>
+
+
+        <div id="article-editor">
+            <textarea style="display:none;" name="context">
+
+            </textarea>
+        </div>
+
+    </form>
+    <script type="text/javascript">
+        $(function() {
+            var editor = editormd("article-editor", {
+                width: "80%",
+                height: 740,
+                path   : "editor/lib/",
+                saveToHTML:true
+            });
+        });
+    </script>
+</body>
+</html>

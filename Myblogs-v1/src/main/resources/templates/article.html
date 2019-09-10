@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title th:text="${article.getATitle()}"></title>
+<!--    <meta name="keywords" content="云函数,错误码,云开发" />-->
+<!--    <meta name="description" content="小程序云开发时，常见错误如：云函数初始化失败, 错误码: -12001, invalid scope.errMsg: 系统错误，错误码：-12001, invalid scope; 错误描述：[云函数] [l..." />-->
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.base.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.head.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.group.css?v=2019061103" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.layout.css?v=2019061442" rel="stylesheet" type="text/css" />
+    <link href="//at.alicdn.com/t/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/baseMotheds.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/plugin/layer/3.0.1/layer.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/plugin/layui/layui.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/detailMotheds.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/digg.js"></script>
+    <style>
+        .articleDetailGroup img {
+            margin:0 auto;
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+<div class="fixedHeadSwitch">
+    <header class="commonHeadGrid">
+        <div class="headGrid layoutWidth">
+            <a class="logo" href="/" title=""><img src="https://www.duoguyu.com//uploads/201904/23/190423113846842.png" alt="koupigu"></a>
+            <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
+            <div class="menuGroup strong layoutHide">
+
+                <span class="item ml20">
+                <a href="#" rel="nofollow" target="_blank" class="loginBtn">登录/注册(未实现)</a>
+    		</span>
+            </div>
+        </div>
+        <div class="headGrid nav layoutWidth">
+            <div class="menuLayout" id="menuLayout">
+                <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
+                <nav class="menuGroup">
+                    <span class="item"><a  href="/">首页</a></span>
+                    <span class="item"><a href="/jour">文章</a></span>
+                    <span class="item"><a href="#">一席话</a></span>
+                    <span class="item"><a href="/about">关于本站</a>
+        		</span>
+                </nav>
+            </div>
+            <!-- searchGroup -->
+            <div class="searchGroup layoutHide">
+                <form method="get" action="https://www.duoguyu.com/index.php" target="_blank" onsubmit="return checkSearch()">
+                    <div id="searchtxt">
+                        <input type="hidden" name="m" value="search" />
+                        <input type="hidden" name="c" value="index" />
+                        <input type="hidden" name="a" value="init" />
+                        <input type="hidden" name="modelid" value="1" id="modelid" />
+                        <input name="q" type="text" placeholder="请输入关键词进行搜索(未实现)" id="searchInput" class="searchInput"/>
+                    </div>
+                    <button id="searchbtn" class="searchBtn" type="submit"><i class="iconfont icon-sousuo"></i></button>
+                </form>
+            </div>
+
+        </div>
+    </header>
+    <script type="text/javascript">
+        function checkSearch(){
+            var searchInput = $('#searchInput').val();
+            var searchVal = $.trim(searchInput);
+            if(searchVal == ''){
+                layer.msg("哎呀，你好像忘记输入搜索内容了！");
+                return false;
+            }
+            if(searchVal.length < 2){
+                layer.msg("搜索关键字至少需要2个字哟！");
+                return false;
+            }
+            return true;
+        }
+    </script>    </div>
+
+<!-- baseGroup -->
+<div class="baseGroup w1100 mt100 layoutAuto">
+    <!-- detailGrid -->
+    <div class="detailGrid my">
+
+        <div class="detailHeadLabel">
+            <h1 class="title" th:text="${article.getATitle()}"><small th:text="这里是标签"> /</small></h1>
+            <p class="info">
+                <span th:text="${article.getADiff()}"></span>
+                阅读 / <span th:text="${article.getAPageView()}"></span>
+                来源 / <span>转载</span>
+                文 / <span>抠屁股</span>
+            </p>
+        </div>
+
+        <div class="description">
+            <div class="detail">
+                <p th:text="${article.getAPreviewText()}"></p>
+            </div>
+            <i class="flag"></i>
+        </div>
+
+        <!-- 正文 -->
+        <article class="articleDetailGroup">
+            <div th:utext="${article.getAContext()}"></div>
+        </article>
+
+
+        <!-- 推荐阅读 -->
+        <div class="rightGrid my fixed bgf">
+            <div class="commonHeadLabel small">
+                <div class="title">推荐阅读(未实现)</div>
+            </div>
+            <div class="labelItem">
+                <a href="https://www.duoguyu.com/resource/6.html" class="item">
+                    <h3>标题</h3>
+                    <p>阅读 1064 <span>/</span> 5月前</p>
+                </a>
+            </div>
+        </div>
+
+
+
+
+        <!-- 评论区 开始 -->
+        <div class="commonHeadLabel small mt80">
+            <div class="title">评论列表(未实现)</div>
+        </div>
+        <div class="commentGrid">
+            <div class="commentForm">
+                <form action="https://www.duoguyu.com/comment/index/init.html" method="post" onsubmit="return check_comm(this)">
+                    <input type="hidden" name="modelid" value="1">
+                    <input type="hidden" name="catid" value="6">
+                    <input type="hidden" name="id" value="35">
+                    <input type="hidden" name="title" value="小程序云开发常见问题及解决方案汇总(持续更新中)">
+                    <input type="hidden" name="url" value="https://www.duoguyu.com/smart/35.html">
+                    <textarea class="commentTextarea" id="content" name="content" placeholder="我来说两句~"></textarea>
+                    <div class="btnBox"><input type="submit" class="submitBtn" name="dosubmit" value="提交"></div>
+                </form>
+            </div>
+
+            <!-- 评论列表 -->
+            <div class="commentList">
+                <div class="title">共0条评论</div>
+                <div class="commentGrid">
+                    <ul class="itemUl">
+                        <li class="tips">这篇文章还没有收到评论，赶紧来抢沙发吧~</li>            			</ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

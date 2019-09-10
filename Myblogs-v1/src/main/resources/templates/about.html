@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>关于</title>
+    <link href="css/dgy.base.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="css/dgy.head.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="css/dgy.group.css?v=2019062602" rel="stylesheet" type="text/css" />
+    <link href="css/dgy.layout.css?v=2019061442" rel="stylesheet" type="text/css" />
+    <link href="css/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/baseMotheds.js"></script>
+  </head>
+<body class="">
+    <!-- header -->
+    <div class="fixedHeadSwitch">
+        <header class="commonHeadGrid">
+            <div class="headGrid layoutWidth">
+                <a class="logo" href="/" title=""><img src="https://www.duoguyu.com//uploads/201904/23/190423113846842.png" alt="koupigu"></a>
+                <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
+                <div class="menuGroup strong layoutHide">
+
+                <span class="item ml20">
+                <a href="#" rel="nofollow" target="_blank" class="loginBtn">登录/注册(未实现)</a>
+    		</span>
+                </div>
+            </div>
+            <div class="headGrid nav layoutWidth">
+                <div class="menuLayout" id="menuLayout">
+                    <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
+                    <nav class="menuGroup">
+                        <span class="item"><a  href="/">首页</a></span>
+                        <span class="item"><a href="/jour/all">文章</a></span>
+                        <span class="item"><a href="#">一席话</a></span>
+                        <span class="item"><a href="/about">关于本站</a>
+        		</span>
+                    </nav>
+                </div>
+                <!-- searchGroup -->
+                <div class="searchGroup layoutHide">
+                    <form method="get" action="https://www.duoguyu.com/index.php" target="_blank" onsubmit="return checkSearch()">
+                        <div id="searchtxt">
+                            <input type="hidden" name="m" value="search" />
+                            <input type="hidden" name="c" value="index" />
+                            <input type="hidden" name="a" value="init" />
+                            <input type="hidden" name="modelid" value="1" id="modelid" />
+                            <input name="q" type="text" placeholder="请输入关键词进行搜索(未实现)" id="searchInput" class="searchInput"/>
+                        </div>
+                        <button id="searchbtn" class="searchBtn" type="submit"><i class="iconfont icon-sousuo"></i></button>
+                    </form>
+                </div>
+
+            </div>
+        </header>
+<script type="text/javascript">
+	function checkSearch(){
+	    var searchInput = $('#searchInput').val();
+	    var searchVal = $.trim(searchInput);
+	    if(searchVal == ''){
+			layer.msg("哎呀，你好像忘记输入搜索内容了！");
+			return false;
+	    }
+	    if(searchVal.length < 2){
+			layer.msg("搜索关键字至少需要2个字哟！");
+			return false;
+	    }
+		return true;
+	}
+</script>
+    </div>
+
+
+    <div class="baseGroup w1100 mt100 layoutAuto">
+        <!-- detailGrid -->
+        <div class="detailGrid my">
+
+            <div style="margin: 10px">
+            </div>
+
+            <!-- 正文 -->
+            <article class="articleDetailGroup">
+                <h3>基于Springboot打造的个人博客</h3>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; 1、设计技术：<br></p>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;核心框架：springboot<br></p>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ORM框架：spring data jpa<br></p>
+                <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;模板引擎：thymeleaf<br></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;数据库：mysql<br></p><h3>关于前端页面</h3><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 前端页面主要使用多骨鱼博客模板（<a>https://www.duoguyu.com/</a>）部分使用了bootstrap。</p><p><br></p><h3>进度</h3><p>&nbsp; &nbsp; &nbsp; &nbsp; 首页显示&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; √<br></p><p><p>&nbsp; &nbsp; &nbsp; &nbsp; 文章详细页&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; √<br>&nbsp; &nbsp; &nbsp; &nbsp; 文章列表分页&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;√<br>&nbsp; &nbsp; &nbsp; &nbsp; 文章分类&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;留言&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标签列表&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章评论&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收藏文章&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;暂定<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关注&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 暂定</p>&nbsp;&nbsp;<br></p>
+
+            </article>
+
+
+
+            <div class="rightGrid my fixed bgf">
+                <div class="commonHeadLabel small mt20">
+                    <span class="title">关于我</span>
+                </div>
+
+                <div class="indexListGrid aside">
+                    <p2>信息无</p2>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+      
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>文章</title>
+    <link th:href="@{/css/dgy.base.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/dgy.head.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/dgy.group.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/dgy.layout.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/font_958938_n3j31its8x.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/jour.css}" rel="stylesheet" type="text/css" />
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/baseMotheds.js"></script>
+  </head>
+
+<body class="">
+    <!-- header -->
+    <div class="fixedHeadSwitch">
+        <header class="commonHeadGrid">
+            <div class="headGrid layoutWidth">
+                <a class="logo" href="/" title=""><img src="https://www.duoguyu.com//uploads/201904/23/190423113846842.png" alt="koupigu"></a>
+                <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
+                <div class="menuGroup strong layoutHide">
+
+                <span class="item ml20">
+                    <a href="#" rel="nofollow" target="_blank" class="loginBtn">登录/注册(未实现)</a>
+    		    </span>
+                </div>
+            </div>
+            <div class="headGrid nav layoutWidth">
+                <div class="menuLayout" id="menuLayout">
+                    <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
+                    <nav class="menuGroup">
+                        <span class="item"><a  href="/">首页</a></span>
+                        <span class="item"><a href="/jour/all">文章</a></span>
+                        <span class="item"><a href="#">一席话</a></span>
+                        <span class="item"><a href="/about">关于本站</a></span>
+                    </nav>
+                </div>
+                <!-- searchGroup -->
+                <div class="searchGroup layoutHide">
+                    <form method="get" action="https://www.duoguyu.com/index.php" target="_blank" onsubmit="return checkSearch()">
+                        <div id="searchtxt">
+                            <input type="hidden" name="m" value="search" />
+                            <input type="hidden" name="c" value="index" />
+                            <input type="hidden" name="a" value="init" />
+                            <input type="hidden" name="modelid" value="1" id="modelid" />
+                            <input name="q" type="text" placeholder="请输入关键词进行搜索(未实现)" id="searchInput" class="searchInput"/>
+                        </div>
+                        <button id="searchbtn" class="searchBtn" type="submit"><i class="iconfont icon-sousuo"></i></button>
+                    </form>
+                </div>
+
+            </div>
+        </header>
+<script type="text/javascript">
+	function checkSearch(){
+	    var searchInput = $('#searchInput').val();
+	    var searchVal = $.trim(searchInput);
+	    if(searchVal == ''){
+			layer.msg("哎呀，你好像忘记输入搜索内容了！");
+			return false;
+	    }
+	    if(searchVal.length < 2){
+			layer.msg("搜索关键字至少需要2个字哟！");
+			return false;
+	    }
+		return true;
+	}
+</script>    </div>
+    
+        <div class="baseGroup w1100 mt120 layoutAuto">
+            <div class="leftWrap pr10 layoutAuto">
+
+                <div class="commonHeadLabel mt20">
+                    <!--        class on 判断标签高亮           -->
+                    <span class="title mr20"><a href="/jour/all" th:classappend="${countPage == 'all'}? 'on'">全部</a></span>
+                    <span class="title mr20" th:each="category:${categories}">
+                         <a th:href="@{'/jour/'+ ${category.getCName()}}" th:text="${category.getCName()}" th:classappend="${ countPage == category.getCName()}?'on'"></a>
+                    </span>
+                </div>
+                <div class="indexListGrid">
+                   <div th:each="article:${articles}">
+                       <a th:href="@{'/article/detail/'+${article.getAId()}}" target="_blank" class="item" style="text-decoration: none">
+                           <div class="content img">
+                               <div class="catWrap">
+                                   <div class="catBox">
+                                       <span class="i" >#</span>
+                                       <div th:each="tag:${article.getTags()}" style="float: left">
+                                           <p style="float: left;margin-left: 5px;font-size: 15px" th:text="${tag.getTName()}"></p>
+                                       </div>
+                                   </div>
+                               </div>
+                               <h2 th:text="${article.getATitle()}"></h2>
+                               <p class="detail layoutHide" th:text="${article.getAPreviewText()}"></p>
+                               <p class="otherInfo">
+                                   <span class="mr5" th:text="${article.getADiff()}"></span>
+                                   <span class="mr5" th:text="浏览 + ' '+${article.getAPageView()}"></span>
+                                   <span class="mr5" th:text="评论 + ' '+${article.getAComment()}"></span>
+                               </p>
+                               <!--判断是否有预览图片-->
+                               <div class="imgBox"  th:if="${article.getACoverPicture()} != null">
+                                   <img  class="img" th:src="@{${article.getACoverPicture()}} " th:alt="${article.getATitle()}">
+                               </div>
+                           </div>
+                       </a>
+                   </div>
+
+                </div>
+
+                <ul  >
+                    <li th:if="${indexPage} > 1">
+                        <a th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage - 1}}">上一页</a>
+                    </li>
+
+                    <li th:if="${indexPage - 3 >=1}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage - 3}}" th:text="${indexPage - 3}" >1</a></li>
+                    <li th:if="${indexPage - 2 >=1}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage - 2}}" th:text="${indexPage - 2}" >1</a></li>
+                    <li th:if="${indexPage - 1 >=1}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage - 1}}" th:text="${indexPage - 1}" >1</a></li>
+                    <li class="a_style"><a th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage}}" th:text="${indexPage}" >1</a></li>
+                    <li th:if="${indexPage+1 <=totalPage}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage+1}}" th:text="${indexPage +1}" >1</a></li>
+                    <li th:if="${indexPage+2 <=totalPage}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage+2}}" th:text="${indexPage +2}" >1</a></li>
+                    <li th:if="${indexPage+3 <=totalPage}" ><a class="a_style_gray" th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage+3}}" th:text="${indexPage +3}" >1</a></li>
+
+                    <li th:if="${indexPage}< ${totalPage}">
+                        <a th:href="@{'/jour/'+${countPage}+'?page='+ ${indexPage+1}}">下一页</a>
+                    </li>
+                </ul>
+                <br>
+                <br>
+
+
+            </div>
+
+            <div class="rightWrap pl10 layoutAuto">
+                
+                
+                <div class="commonHeadLabel small mt20">
+                    <span class="title">人气推荐（未实现）</span>
+                </div>
+                
+                <div class="indexListGrid aside">
+                    <a href="#" target="_blank" class="item">
+                        <div class="content img">
+                            <h2>这里是标题</h2>
+                            <p class="otherInfo">
+                                <span class="mr5">所属分类</span>
+                                <span class="mr5">浏览数</span>
+                            </p>
+                            <div class="imgBox">
+                                <!--文章图片-->
+                                <!--<img class="img" src="/uploads/201903/30/190330094829632.jpg" alt="标题">-->
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                
+                <!-- 这里是广告 -->
+                <div style="margin-bottom:40px;">
+
+                </div>
+                
+                <!-- 热门标签 -->
+                <div class="commonHeadLabel small mt40">
+                    <span class="title">热门标签</span>
+                </div>
+                <div class="indexTagGrid">
+                    <div th:each="tag:${tags}">
+                        <a th:href="@{ '/search/tag/'+ ${tag.getTId()}}"
+                           class="item" target="_blank" th:text="${tag.getTName()}"></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                
+                <!-- 广告业务 -->
+
+            </div>
+    		<div class="clearfix"></div>
+        </div>
+        
+        <br><br><br>
+    <!-- footer -->
+      
+  </body>
+</html>

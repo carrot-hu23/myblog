@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>胡锦波</title>
+
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.base.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.head.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.group.css?v=2019062602" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.layout.css?v=2019061442" rel="stylesheet" type="text/css" />
+    <link href="//at.alicdn.com/t/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/baseMotheds.js"></script>
+</head>
+<body class="">
+    <!-- header -->
+    <div class="fixedHeadSwitch">
+        <header class="commonHeadGrid">
+    <div class="headGrid layoutWidth">
+        <a class="logo" href="/" title="koupigu">
+            <img src="https://www.duoguyu.com/uploads/201904/23/190423113846842.png" alt="koupigu">
+        </a>
+        <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
+        <div class="menuGroup strong layoutHide">
+            <span class="item ml20">
+                <a href="#" rel="nofollow" target="_blank" class="loginBtn">登录/注册(未实现)</a>
+    		</span>
+        </div>
+    </div>
+    <div class="headGrid nav layoutWidth">
+        <div class="menuLayout" id="menuLayout">
+            <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
+            <nav class="menuGroup">
+                <span class="item"><a  href="/">首页</a></span>
+                <span class="item"><a href="/jour/all">文章</a></span>
+                <span class="item"><a href="#">一席话</a></span>
+                <span class="item"><a href="/about">关于本站</a></span>
+            </nav>
+        </div>
+       <!-- searchGroup -->
+    	<div class="searchGroup layoutHide">
+        	<form method="get" action="https://www.duoguyu.com/index.php" target="_blank" onsubmit="return checkSearch()">
+        		<div id="searchtxt">
+        			<input type="hidden" name="m" value="search" />
+        			<input type="hidden" name="c" value="index" />
+        			<input type="hidden" name="a" value="init" />
+        			<input type="hidden" name="modelid" value="1" id="modelid" />
+        			<input name="q" type="text" placeholder="请输入关键词进行搜索。" id="searchInput" class="searchInput"/>
+        		</div>
+        		<button id="searchbtn" class="searchBtn" type="submit"><i class="iconfont icon-sousuo"></i></button>
+        	</form>
+        </div>
+        
+    </div>
+</header>
+<script type="text/javascript">
+	function checkSearch(){
+	    var searchInput = $('#searchInput').val();
+	    var searchVal = $.trim(searchInput);
+	    if(searchVal == ''){
+			layer.msg("哎呀，你好像忘记输入搜索内容了！");
+			return false;
+	    }
+	    if(searchVal.length < 2){
+			layer.msg("搜索关键字至少需要2个字哟！");
+			return false;
+	    }
+		return true;
+	}
+</script>    </div>
+    <article>
+        
+        <div class="launchTopGird">
+            <div class="baseGroup w1100 layoutAuto">
+                <div class="leftWrap layoutAuto">
+                    <div class="swiper-container" id="indexTopFocus">
+                       <div class="swiper-wrapper">
+                           <div class="swiper-slide" th:each="slide:${slides}">
+                               <div class="imgGroup layoutAuto">
+                                   <img class="img layoutAuto" th:src="${slide.getSUrl()}">
+
+                               </div>
+                               <div class="clearfix"></div>
+                           </div>
+
+
+                       </div>
+                        <div class="swiper-button-prev" ></div>
+                        <div class="swiper-button-next" ></div>
+                        <div class="swiper-pagination"></div>
+                   </div>
+                </div>
+
+                <div class="rightWrap layoutHide">
+                    <!-- 遇见北岛 小程序 -->
+
+                </div>
+
+    	        <div class="clearfix"></div>
+            </div>
+            
+        </div>
+        
+        <div class="baseGroup w1100 layoutAuto">
+            <div class="leftWrap pr10 layoutAuto">
+                <div class="commonHeadLabel small">
+                    <h2 class="title">最近更新</h2>
+                </div>
+                <div class="indexListGrid">
+                    <div class="item" th:each="list:${lists}">
+                        <div class="content img">
+
+                            <div class="catWrap">
+                                <div class="catBox">
+                                    <span class="i" >#</span>
+                                    <div th:each="tag:${list.getTags()}" style="float: left">
+                                        <p style="float: left;margin-left: 5px;font-size: 15px" th:text="${tag.getTName()}"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <a th:href="@{'/article/detail/'+${list.getAId()}}"><h2 th:text="${list.getATitle()}"></h2></a>
+
+                            <p class="detail layoutHide" th:text= "${list.getAPreviewText() +'...'}"></p>
+
+                            <p class="otherInfo">
+                                <span class="mr5" th:text="${list.getADiff()}"></span>
+                                <span class="mr5" th:text="浏览 + ' '+${list.getAPageView()}"></span>
+                                <span class="mr5" th:text="评论 + ' '+${list.getAComment()}"></span>
+                            </p>
+
+                            <!--判断是否有预览图片-->
+                            <div class="imgBox"  th:if="${list.getACoverPicture()} != null">
+                                <img  class="img" th:src="@{${list.getACoverPicture()}} " th:alt="${list.getATitle()}">
+                            </div>
+                        </div>
+
+                    </div>
+
+    		    </div>
+                
+                <div class="commonHeadLabel small">
+                    <h2 class="title fl">推荐资源</h2>
+                    <div class="rtWrap">
+                        <span class="nav pr10">
+                            <a href="https://www.duoguyu.com/resource/" target="_blank">查看更多</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="articleModeGrid w3 index on swiper-container" id="resourceGrid">
+                    <div class="swiper-wrapper">
+                                                                        <div class="itemLi swiper-slide">
+                            <a href="https://www.duoguyu.com/resource/30.html" target="_blank" class="content">
+                                <div class="imgBox full layoutAuto">
+                                    <img class="img" src="/uploads/201906/21/190621110530459.jpg" alt="Avatar响应式博客模版主题-尝鲜版，免费下载">
+                                </div>
+                                <div class="articleGroup">
+                                    <p class="topText">资源</p>
+                                    <h2>Avatar响应式博客模版主题-尝鲜版，免费下载</h2>
+                                    <div class="detail">嗯，终于还是写了响应式这次。算是满足某黄的个人私欲吧，科科。虽然是个尝鲜版，...</div>
+                                    <div class="btmInfo">
+                                        <span class="">浏览 991</span>
+                                        <span class="text">2月前</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                                                <div class="itemLi swiper-slide">
+                            <a href="https://duoguyu.com/resource/19.html" target="_blank" class="content">
+                                <div class="imgBox full layoutAuto">
+                                    <img class="img" src="/uploads/201904/18/190418050840965.jpg" alt="完整版“Intro”个性博客模版主题，附带演示数据，YzmCMS模版主题，免费下载">
+                                </div>
+                                <div class="articleGroup">
+                                    <p class="topText">资源</p>
+                                    <h2>完整版&ldquo;Intro&rdquo;个性博客模版主题，附带演示数据，Yzm...</h2>
+                                    <div class="detail">最新完整版本的Intro个性博客模版，附带基础的演示数据（文章、下载、导航分类、ba...</div>
+                                    <div class="btmInfo">
+                                        <span class="">浏览 1559</span>
+                                        <span class="text">4月前</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                                                <div class="itemLi swiper-slide">
+                            <a href="https://www.duoguyu.com/resource/15.html" target="_blank" class="content">
+                                <div class="imgBox full layoutAuto">
+                                    <img class="img" src="/uploads/201903/19/190319091330211.jpg" alt="Intro个性博客模板主题-尝鲜版，免费下载">
+                                </div>
+                                <div class="articleGroup">
+                                    <p class="topText">资源</p>
+                                    <h2>Intro个性博客模板主题-尝鲜版，免费下载</h2>
+                                    <div class="detail">新版本博客2019尝鲜版，命名为&ldquo;Intro&rdquo;，意为：序章。整体风格依旧是个人喜欢的极...</div>
+                                    <div class="btmInfo">
+                                        <span class="">浏览 987</span>
+                                        <span class="text">5月前</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                                                <div class="itemLi swiper-slide">
+                            <a href="https://www.duoguyu.com/resource/8.html" target="_blank" class="content">
+                                <div class="imgBox full layoutAuto">
+                                    <img class="img" src="/uploads/201903/11/190311055742447.jpg" alt="[小程序]明信片、canvas生成海报源码demo">
+                                </div>
+                                <div class="articleGroup">
+                                    <p class="topText">资源</p>
+                                    <h2>[小程序]明信片、canvas生成海报源码demo</h2>
+                                    <div class="detail">源码是首次采用小程序云开发模式做的一款名为&quot;手札时光&quot;的信笺小程序，但是由于属...</div>
+                                    <div class="btmInfo">
+                                        <span class="">浏览 714</span>
+                                        <span class="text">5月前</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                                                <div class="itemLi swiper-slide">
+                            <a href="https://www.duoguyu.com/resource/7.html" target="_blank" class="content">
+                                <div class="imgBox full layoutAuto">
+                                    <img class="img" src="/uploads/201903/10/190310093223221.jpg" alt="《多骨鱼·楽间 电影排行榜》微信小程序 v1.2.0 快速开发源码 Demo">
+                                </div>
+                                <div class="articleGroup">
+                                    <p class="topText">资源</p>
+                                    <h2>《多骨鱼&middot;楽间 电影排行榜》微信小程序 v1.2.0 快...</h2>
+                                    <div class="detail">《多骨鱼&middot;楽间 电影排行榜》微信小程序 v1.2.0 快速开发 Demo线上实例， 请...</div>
+                                    <div class="btmInfo">
+                                        <span class="">浏览 496</span>
+                                        <span class="text">5月前</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                                                <div class="clearfix"></div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+                
+                
+                <div class="indexListGrid mt20">
+    				<a href="#" target="_blank" class="item">
+                        <div class="content img">
+                            <div class="catWrap">
+                                <div class="catBox"><span class="i">#</span>小程序</div>
+                            </div>
+                            <h2>云函数调用失败，errCode: -404011 cloud.callFunction:fail requestID , cloud function service error code -501005的解决方案</h2>
+                            <p class="detail layoutHide">小程序云开发实践操作中，云函数调用失败时，错误描述：[云函数] [login] 调用失败 Error: errCode: -404011的解决方案。</p>
+                            <p class="otherInfo">
+                                <span class="mr5">10天前</span>
+                                <span class="mr5">浏览 50</span>
+                            </p>
+                            <div class="imgBox">
+                                <img class="img" src="https:ww/uploads/201908/14/190814104234823.jpg" alt="云函数调用失败，errCode: -404011 cloud.callFunction:fail requestID , cloud function service error code -501005的解决方案">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="rightWrap pl10 layoutAuto">
+            
+            
+                
+                <!-- 热门标签 -->
+                <div class="commonHeadLabel small mt40">
+                    <h2 class="title">热门标签</h2>
+                </div>
+                <div class="indexTagGrid">
+                    <div th:each="tag:${tags}">
+                        <a th:href="@{ '/search/tag/'+ ${tag.getTId()}}"
+                           class="item" target="_blank" th:text="${tag.getTName()}"></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                
+
+
+                
+                
+            </div>
+    		<div class="clearfix"></div>
+        </div>
+        
+    </article>
+    <!-- / article -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
+    <footer class="bgf mt40">
+    <!-- footer -->
+  <div class="commonFooterGrid layoutHide">
+
+    <div class="baseGroup w1100">
+      <div class="footerGrid">
+            <div class="menuGroup">
+
+
+      </div>
+    </div>
+
+  </div>
+<!-- / footer -->
+
+<!-- fixedWidget -->
+<div class="fixedWidget layoutHide">
+    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=tonney@duoguyu.com" rel="nofollow" target="_blank" class="mail" title="联系我"></a>
+    <a href="#" rel="nofollow" class="top backTop" title="返回顶部"></a>
+</div>
+<script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/dgy.index.js?v=2019061502"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?27331971e797a75b1e14c040db0bf365";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?980564ce2fe91b2ba02b12a373cdf1c3":"https://jspassport.ssl.qhimg.com/11.0.1.js?980564ce2fe91b2ba02b12a373cdf1c3";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>    </footer>
+</body>
+</html>

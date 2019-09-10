@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title th:title="${tagName}"></title>
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.base.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.head.css?v=2019061101" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.group.css?v=2019061103" rel="stylesheet" type="text/css" />
+    <link href="https://www.duoguyu.com/common/static/avatar/css/dgy.layout.css?v=2019061442" rel="stylesheet" type="text/css" />
+    <link href="//at.alicdn.com/t/font_958938_n3j31its8x.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/baseMotheds.js"></script>
+    <script type="text/javascript" src="https://www.duoguyu.com/common/static/avatar/js/detailMotheds.js"></script>
+</head>
+<body>
+<header class="commonHeadGrid">
+        <div class="headGrid layoutWidth">
+            <a class="logo" href="/" title="koupigu">
+                <img src="https://www.duoguyu.com/uploads/201904/23/190423113846842.png" alt="koupigu">
+            </a>
+            <div class="menuBtnWrapLayout openBtn" id="touchMenuOpen"><i class="iconfont icon-liebiao"></i></div>
+            <div class="menuGroup strong layoutHide">
+                <span class="item ml20">
+                    <a href="#" rel="nofollow" target="_blank" class="loginBtn">登录/注册(未实现)</a>
+                </span>
+            </div>
+        </div>
+        <div class="headGrid nav layoutWidth">
+            <div class="menuLayout" id="menuLayout">
+                <div class="menuBtnWrapLayout closeBtn" id="touchMenuClose"><i class="iconfont icon-cuowu"></i></div>
+                <nav class="menuGroup">
+                    <span class="item"><a  href="/">首页</a></span>
+                    <span class="item"><a href="/jour/all">文章</a></span>
+                    <span class="item"><a href="#">一席话</a></span>
+                    <span class="item"><a href="/about">关于本站</a></span>
+                </nav>
+            </div>
+        <!-- searchGroup -->
+        <div class="searchGroup layoutHide">
+            <form method="get" action="https://www.duoguyu.com/index.php" target="_blank" onsubmit="return checkSearch()">
+                <div id="searchtxt">
+                    <input type="hidden" name="m" value="search" />
+                    <input type="hidden" name="c" value="index" />
+                    <input type="hidden" name="a" value="init" />
+                    <input type="hidden" name="modelid" value="1" id="modelid" />
+                    <input name="q" type="text" placeholder="请输入关键词进行搜索。" id="searchInput" class="searchInput"/>
+                </div>
+                <button id="searchbtn" class="searchBtn" type="submit"><i class="iconfont icon-sousuo"></i></button>
+            </form>
+        </div>
+
+    </div>
+</header>
+<script type="text/javascript">
+    function checkSearch(){
+        var searchInput = $('#searchInput').val();
+        var searchVal = $.trim(searchInput);
+        if(searchVal == ''){
+            layer.msg("哎呀，你好像忘记输入搜索内容了！");
+            return false;
+        }
+        if(searchVal.length < 2){
+            layer.msg("搜索关键字至少需要2个字哟！");
+            return false;
+        }
+        return true;
+    }
+</script>
+<!-- channelHeadGrid -->
+<div class="userHeadGrid layoutHide">
+    <div class="planetGroup w1100">
+        <h1 class="title" th:text="${tagName}"></h1>
+        <p class="detail">为您找到相关结果<b class="mlr5" th:text="${count}"></b>条</p>
+        <i class="planet a1 animateBalloon2"></i>
+        <i class="planet a2 animateBalloon4"></i>
+        <i class="planet a3 animateBalloon"></i>
+        <i class="planet a4 animateBalloon3"></i>
+    </div>
+</div>
+
+<!-- article -->
+<!-- baseGroup -->
+<div class="baseGroup w1100 layoutAuto">
+    <!-- detailGrid -->
+    <div class="detailGrid my">
+        <div class="boxGroup">
+            <div class="commonHeadLabel small">
+                <div class="title">搜索结果</div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- searchData -->
+            <div class="searchListGrid" th:each="article:${articles}">
+                <div class="item">
+                    <h2><a th:href="@{'/article/detail/'+${article.getAId()}}" target="_blank" th:text="${article.getATitle()}"></a></h2>
+                    <div class="content">
+                        <p class="detail" th:text="${article.getAPreviewText()}"></p>
+                        <p th:text="${article.getADiff()}"> <span class="mlr" th:text="'阅读 '+ ${article.getAPageView()}">/</span></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+<!--            <div id="pageGroup"><span class="pageinfo">共<strong>2</strong>页<strong>10</strong>条记录</span><a href="https://www.duoguyu.com/search/index/tag/id/15/page/1.html" class="homepage">首页</a><a href="javascript:;" class="prepage nopage">上页</a><a href="https://www.duoguyu.com/search/index/tag/id/15/page/1.html" class="listpage curpage">1</a><a href="https://www.duoguyu.com/search/index/tag/id/15/page/2.html" class="listpage">2</a><a href="https://www.duoguyu.com/search/index/tag/id/15/page/2.html" class="nextpage">下页</a><a href="https://www.duoguyu.com/search/index/tag/id/15/page/2.html" class="endpage">尾页</a></div>-->
+            <ul  >
+                <li th:if="${indexPage} > 1">
+                    <a th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage - 1}}">上一页</a>
+                </li>
+
+                <li th:if="${indexPage - 3 >=1}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage - 3}}" th:text="${indexPage - 3}" >1</a></li>
+                <li th:if="${indexPage - 2 >=1}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage - 2}}" th:text="${indexPage - 2}" >1</a></li>
+                <li th:if="${indexPage - 1 >=1}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage - 1}}" th:text="${indexPage - 1}" >1</a></li>
+                <li class="a_style"><a th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage}}" th:text="${indexPage}" >1</a></li>
+                <li th:if="${indexPage+1 <=totalPages}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage+1}}" th:text="${indexPage +1}" >1</a></li>
+                <li th:if="${indexPage+2 <=totalPages}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage+2}}" th:text="${indexPage +2}" >1</a></li>
+                <li th:if="${indexPage+3 <=totalPages}" ><a class="a_style_gray" th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage+3}}" th:text="${indexPage +3}" >1</a></li>
+
+                <li th:if="${indexPage}< ${totalPages}">
+                    <a th:href="@{'/search/tag/'+${id}+'/?page='+ ${indexPage+1}}">下一页</a>
+                </li>
+            </ul>
+            <br>
+            <br>
+            <!-- rightGrid -->
+            <div class="rightGrid my layoutHide">
+
+                <div class="commonHeadLabel small">
+                    <div class="title">推荐阅读（未实现）</div>
+                </div>
+                <div class="labelItem">
+                    <a href="#" class="item">
+                        <h3>这里是标题</h3>
+                        <p>阅读数<span>/</span> 时间</p>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<br><br><br>
+
+</body>
+</html>

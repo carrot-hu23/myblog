@@ -1,0 +1,19 @@
+/*
+修改jour页面部分样式
+*/
+ul li a{
+    list-style-type:none;
+    display:inline-block;
+    float:left;
+    margin:10px;
+    padding:5px;
+    font-size: 15px;
+    text-decoration: none
+}
+
+.a_style_blue{
+    color: #409eff;
+}
+.a_style_gray{
+    color: #999;
+}
