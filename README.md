@@ -16,7 +16,7 @@ springboot + jpa + mysql + thymeleaf
 
 #### 	首页
 
-![](doc\首页01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/首页01.png)
 
 #### 	文章
 
