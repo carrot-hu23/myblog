@@ -16,7 +16,7 @@ springboot + jpa + mysql + thymeleaf
 
 #### 	首页
 
-![](C:\Users\胡锦波\Desktop\doc\首页01.png)
+![](doc\首页01.png)
 
 #### 	文章
 
