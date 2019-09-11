@@ -1,56 +1,76 @@
-## 写在前言
+首页显示            √
 
-这个博客兜兜转转写了差不多3个月吧，从今年暑假7月开始写（刚学完java和数据库，在加上leetcode刷题实在刷不下去了，就决定写一个自己的网站），当时在知乎上大家都说jsp过时了直接上手spring boot，然后当时就去使用springbboot 结果一脸懵逼，后来才知道在学习web之前先要学习javaEE和http协议，jsp只是个模板会有各种替代品，而servlet标准这个是不变的，而springboot web模块是使用spring mvc模块，而spring mvc 本质还是个servlet。
+文章详细页        √
 
-当然在写这个这个博客时也遇到了各种问题，这些问题大部分都通过百度解决
+文章列表分页     √
 
-## 技术
+文章分类            √
 
-springboot + jpa + mysql + thymeleaf
+标签列表            √
 
-前台页面用的别人的页面   多骨鱼博客    [https://www.duoguyu.com/]()
+编写文章	    √
+
+文章评论           暂定
+
+登录                 暂定
+
+收藏文章          暂定
+
+关注                 暂定
+
+2019/08/27  解决了文章显示几天前，mysql时区指定 serverTimezone=Asia/Shanghai
+
+2019/08/28  重写TimeUtil类
+
+2019/08/29  完成分页功：
+
+​		解决方案：
+
+​		使用bootstrap分页样式。总体思路是以当前页为中心，左边三个按钮右边三个按钮，挨个判断+页数和-页数时		有没有超出范围在第一页和最后一页时需要做一个判断，如果当前页等于1时，上一页按钮失效，当前页等于总		页数时，最后一页失效
+
+2019/08/30  修改分页样式
+
+​		解决方案：
+
+​				去掉bootstrap样式，修改li间隔，只显示数字，当前页显示蓝色数字
+
+2019/08/31  新增上传图片
+
+​		解决方案：
+
+​		调用wang editor 接口，editor发送请求，后台接受请求保存图片，并返回{errno：0;String[] date{图片url}}
+
+2019/09/02  新增文章分页和标签样式
+
+​		    新增分页表和标签表，其中文章表和分页表一对多，标签表和文章表多对多
+
+2019/09/03  解决后端保存标签逻辑问题
+
+​		   未解决
+
+​			一对多，多对一，多对多 表联系以及多表查询 还不会
+
+​			暂停！接着学习spring data jpa
+
+2019/09/04 解决标签和分页问题，前台显示标签以及标签云功能
+
+2019/09/05 解决分类导航问题（所有数据从数据库中拿）
+
+​		   解决分类和分页逻辑出错问题
+
+2019/09/06 新增标签点击页面
+
+2019/09/07
+
+ 		生病
+
+2019/09/09
+
+2019/09/10  完善细节问题，上传GitHub编写readme，此项目断停。
+
+​		    前台页面基本完成，后台管理可能会和此项目分开，同时使用前后端分离，前端使用vue搭建看有没有时间。
 
 
 
-## 页面展示
-
-#### 	首页
-
-![](https://github.com/koupigu/blog/blob/master/doc/首页01.png)
-
-#### 	文章
-
-![](https://github.com/koupigu/blog/blob/master/doc/文章01.png)
-
-![](https://github.com/koupigu/blog/blob/master/doc/分页01.png)
-
-#### 	文章详细
-
-![](https://github.com/koupigu/blog/blob/master/doc/文章详细01.png)
-
-#### 	标签
-
-![](https://github.com/koupigu/blog/blob/master/doc/标签01.png)
-
-
-
-## 数据库设计
-
-参考文章     [https://zhangjia.io/852.html]()
-
-自己在他的基础上删减了一部分
-
-#### 需求分析
-
-...
-
-#### ER图（属性省略了）
-
-![](https://github.com/koupigu/blog/blob/master/doc/ER图01.png)
-
-#### 视图
-
-![](https://github.com/koupigu/blog/blob/master/doc/数据库视图01.png)
-
-#### sql
+学英语！    
 
