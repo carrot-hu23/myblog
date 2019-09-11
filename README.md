@@ -16,21 +16,21 @@ springboot + jpa + mysql + thymeleaf
 
 #### 	首页
 
-![](C:\Users\胡锦波\Desktop\doc\首页01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/首页01.png)
 
 #### 	文章
 
-![](C:\Users\胡锦波\Desktop\doc\文章01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/文章01.png)
 
-![](C:\Users\胡锦波\Desktop\doc\分页01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/分页01.png)
 
 #### 	文章详细
 
-![](C:\Users\胡锦波\Desktop\doc\文章详细01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/文章详细01.png)
 
 #### 	标签
 
-![](C:\Users\胡锦波\Desktop\doc\标签01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/标签01.png)
 
 
 
@@ -46,11 +46,11 @@ springboot + jpa + mysql + thymeleaf
 
 #### ER图（属性省略了）
 
-![](C:\Users\胡锦波\Desktop\doc\ER图01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/ER图01.png)
 
 #### 视图
 
-![](C:\Users\胡锦波\Desktop\doc\数据库视图01.png)
+![](https://github.com/koupigu/blog/blob/master/doc/数据库视图01.png)
 
 #### sql
 
